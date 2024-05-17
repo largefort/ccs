@@ -4,6 +4,7 @@ let houseCost = 50; // Cost to add a new house
 let taxUpgradeCost = 100; // Cost to upgrade tax rate
 let collectionSpeedUpgradeCost = 200; // Cost to upgrade collection speed
 let collectionInterval = 1000; // Initial tax collection interval (ms)
+let lastCollectionTime = 0; // Last time taxes were collected
 
 const cityElement = document.getElementById('city');
 const taxAmountElement = document.getElementById('tax-amount');
@@ -58,23 +59,27 @@ function createHouse() {
 
 // Function to simulate tax collection
 function collectTaxes() {
-    const houses = document.querySelectorAll('.house');
-    houses.forEach((house, index) => {
-        const dollarSign = house.querySelector('.dollar-sign');
-        setTimeout(() => {
-            house.style.backgroundColor = '#90EE90'; // Light green
-            dollarSign.style.top = '50px';
-            dollarSign.style.opacity = '1';
+    const currentTime = performance.now();
+    if (currentTime - lastCollectionTime >= collectionInterval) {
+        const houses = document.querySelectorAll('.house');
+        houses.forEach((house, index) => {
+            const dollarSign = house.querySelector('.dollar-sign');
             setTimeout(() => {
-                house.style.backgroundColor = '#ADD8E6'; // Light blue
-                dollarSign.style.top = '-20px';
-                dollarSign.style.opacity = '0';
-                taxAmount += taxRate;
-                updateTaxCounter();
-                saveGameState();
-            }, 500);
-        }, index * collectionInterval / houses.length);
-    });
+                house.style.backgroundColor = '#90EE90'; // Light green
+                dollarSign.style.top = '50px';
+                dollarSign.style.opacity = '1';
+                setTimeout(() => {
+                    house.style.backgroundColor = '#ADD8E6'; // Light blue
+                    dollarSign.style.top = '-20px';
+                    dollarSign.style.opacity = '0';
+                    taxAmount += taxRate;
+                    updateTaxCounter();
+                    saveGameState();
+                }, 500);
+            }, index * collectionInterval / houses.length);
+        });
+        lastCollectionTime = currentTime;
+    }
 }
 
 // Function to update the tax counter
@@ -122,6 +127,12 @@ function upgradeCollectionSpeed() {
     }
 }
 
+// Game loop using requestAnimationFrame for smooth performance
+function gameLoop() {
+    collectTaxes(); // Collect taxes based on the interval
+    requestAnimationFrame(gameLoop);
+}
+
 // Event listeners for buttons
 addHouseButton.addEventListener('click', addHouse);
 upgradeTaxButton.addEventListener('click', upgradeTaxRate);
@@ -138,5 +149,5 @@ if (cityElement.children.length === 0) {
     saveGameState();
 }
 
-// Collect taxes at intervals
-setInterval(collectTaxes, collectionInterval);
+// Start the game loop
+requestAnimationFrame(gameLoop);
