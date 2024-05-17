@@ -15,15 +15,17 @@ const upgradeCollectionButton = document.getElementById('upgrade-collection');
 function loadGameState() {
     const savedState = JSON.parse(localStorage.getItem('gameState'));
     if (savedState) {
-        taxRate = savedState.taxRate;
-        taxAmount = savedState.taxAmount;
-        houseCost = savedState.houseCost;
-        taxUpgradeCost = savedState.taxUpgradeCost;
-        collectionSpeedUpgradeCost = savedState.collectionSpeedUpgradeCost;
-        collectionInterval = savedState.collectionInterval;
+        taxRate = savedState.taxRate || taxRate;
+        taxAmount = savedState.taxAmount || taxAmount;
+        houseCost = savedState.houseCost || houseCost;
+        taxUpgradeCost = savedState.taxUpgradeCost || taxUpgradeCost;
+        collectionSpeedUpgradeCost = savedState.collectionSpeedUpgradeCost || collectionSpeedUpgradeCost;
+        collectionInterval = savedState.collectionInterval || collectionInterval;
 
         // Recreate houses
-        savedState.houses.forEach(() => createHouse());
+        if (savedState.houses && savedState.houses.length > 0) {
+            savedState.houses.forEach(() => createHouse());
+        }
         updateTaxCounter();
     }
 }
@@ -126,7 +128,7 @@ loadGameState();
 
 // Create initial houses if none are loaded
 if (cityElement.children.length === 0) {
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 10; i++) {
         createHouse();
     }
     saveGameState();
