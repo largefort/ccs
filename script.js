@@ -126,7 +126,7 @@ loadGameState();
 
 // Create initial houses if none are loaded
 if (cityElement.children.length === 0) {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i += 1) {
         createHouse();
     }
     saveGameState();
