@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#game-container {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#tax-counter {
+    font-size: 24px;
+    color: red;
+    margin-bottom: 20px;
+}
+
+#controls {
+    margin-bottom: 20px;
+}
+
+#controls button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#city {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.house {
+    width: 100px;
+    height: 100px;
+    background: #add8e6;
+    margin: 10px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: background 0.5s;
+}
+
+.house::after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+.dollar-sign {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: green;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
