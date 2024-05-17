@@ -1,2 +1,2 @@
-# csr
+# ccs
 City Collectors service
