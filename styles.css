@@ -2,6 +2,11 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
 #game-container {
@@ -11,6 +16,8 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
+    width: 100%;
+    max-width: 600px;
 }
 
 #tax-counter {
@@ -26,10 +33,15 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
 }
 
 #controls {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 #controls button {
@@ -37,17 +49,23 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    flex: 1 1 40%;
+    max-width: 200px;
+    box-sizing: border-box;
 }
 
 #city {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    overflow-y: auto;
+    height: calc(100vh - 160px);
+    width: 100%;
 }
 
 .house {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background: #add8e6;
     margin: 10px;
     position: relative;
