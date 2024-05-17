@@ -52,7 +52,7 @@ function createHouse() {
 
     const dollarSign = document.createElement('div');
     dollarSign.className = 'dollar-sign';
-    dollarSign.innerText = '$';
+    dollarSign.innerText = `$${taxRate}`;
     house.appendChild(dollarSign);
 }
 
@@ -101,6 +101,10 @@ function upgradeTaxRate() {
         taxRate += 5; // Increase tax rate
         updateTaxCounter();
         saveGameState();
+        // Update dollar sign text for all houses
+        document.querySelectorAll('.house .dollar-sign').forEach(sign => {
+            sign.innerText = `$${taxRate}`;
+        });
     } else {
         alert('Not enough funds to upgrade tax rate!');
     }
