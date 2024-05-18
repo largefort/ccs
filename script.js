@@ -64,15 +64,19 @@ function collectTaxes() {
         const houses = document.querySelectorAll('.house');
         houses.forEach((house, index) => {
             const dollarSign = house.querySelector('.dollar-sign');
-            dollarSign.classList.add('active');
-            house.style.backgroundColor = '#90EE90'; // Light green
             setTimeout(() => {
-                house.style.backgroundColor = '#ADD8E6'; // Light blue
-                dollarSign.classList.remove('active');
-                taxAmount += taxRate;
-                updateTaxCounter();
-                saveGameState();
-            }, 1000);
+                house.style.backgroundColor = '#90EE90'; // Light green
+                dollarSign.style.top = '50px';
+                dollarSign.style.opacity = '1';
+                setTimeout(() => {
+                    house.style.backgroundColor = '#ADD8E6'; // Light blue
+                    dollarSign.style.top = '-20px';
+                    dollarSign.style.opacity = '0';
+                    taxAmount += taxRate;
+                    updateTaxCounter();
+                    saveGameState();
+                }, 500);
+            }, index * collectionInterval / houses.length);
         });
         lastCollectionTime = currentTime;
     }
