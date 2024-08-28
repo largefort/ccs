@@ -2,7 +2,6 @@ let taxRate = 10; // Initial tax rate per house
 let taxAmount = 0; // Initial tax amount
 let houseCost = 50; // Cost to add a new house
 let taxUpgradeCost = 100; // Cost to upgrade tax rate
-let collectionSpeedUpgradeCost = 200; // Cost to upgrade collection speed
 let collectionInterval = 1000; // Initial tax collection interval (ms)
 let lastCollectionTime = 0; // Last time taxes were collected
 
@@ -10,7 +9,6 @@ const cityElement = document.getElementById('city');
 const taxAmountElement = document.getElementById('tax-amount');
 const addHouseButton = document.getElementById('add-house');
 const upgradeTaxButton = document.getElementById('upgrade-tax');
-const upgradeCollectionButton = document.getElementById('upgrade-collection');
 
 // Load game state from localStorage
 function loadGameState() {
@@ -20,7 +18,6 @@ function loadGameState() {
         taxAmount = savedState.taxAmount || taxAmount;
         houseCost = savedState.houseCost || houseCost;
         taxUpgradeCost = savedState.taxUpgradeCost || taxUpgradeCost;
-        collectionSpeedUpgradeCost = savedState.collectionSpeedUpgradeCost || collectionSpeedUpgradeCost;
         collectionInterval = savedState.collectionInterval || collectionInterval;
 
         // Recreate houses
@@ -38,7 +35,6 @@ function saveGameState() {
         taxAmount,
         houseCost,
         taxUpgradeCost,
-        collectionSpeedUpgradeCost,
         collectionInterval,
         houses: Array.from(document.querySelectorAll('.house')).map(() => ({}))
     };
@@ -115,18 +111,6 @@ function upgradeTaxRate() {
     }
 }
 
-// Function to upgrade collection speed
-function upgradeCollectionSpeed() {
-    if (taxAmount >= collectionSpeedUpgradeCost) {
-        taxAmount -= collectionSpeedUpgradeCost;
-        collectionInterval = Math.max(500, collectionInterval - 100); // Increase speed by reducing interval
-        updateTaxCounter();
-        saveGameState();
-    } else {
-        alert('Not enough funds to upgrade collection speed!');
-    }
-}
-
 // Game loop using requestAnimationFrame for smooth performance
 function gameLoop() {
     collectTaxes(); // Collect taxes based on the interval
@@ -136,7 +120,6 @@ function gameLoop() {
 // Event listeners for buttons
 addHouseButton.addEventListener('click', addHouse);
 upgradeTaxButton.addEventListener('click', upgradeTaxRate);
-upgradeCollectionButton.addEventListener('click', upgradeCollectionSpeed);
 
 // Load game state on page load
 loadGameState();
@@ -151,3 +134,4 @@ if (cityElement.children.length === 0) {
 
 // Start the game loop
 requestAnimationFrame(gameLoop);
+
