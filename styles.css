@@ -17,6 +17,10 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 600px;
+    height: 80vh; /* Adjusted height to make room for scrolling */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 #tax-counter {
@@ -37,7 +41,7 @@ body {
 }
 
 #controls {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -61,13 +65,17 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
+#city-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
 #city {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    overflow-y: auto;
-    height: calc(100vh - 180px);
-    width: 100%;
+    height: auto;
     padding-bottom: 20px;
 }
 
@@ -108,3 +116,4 @@ body {
     top: -10px;
     opacity: 1;
 }
+
