@@ -1,6 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e9ecef;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -11,47 +11,54 @@ body {
 
 #game-container {
     text-align: center;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 600px;
 }
 
 #tax-counter {
-    font-size: 24px;
-    color: red;
-    margin-bottom: 20px;
+    font-size: 26px;
+    color: #dc3545; /* Bootstrap's danger color */
+    margin-bottom: 25px;
     position: fixed;
-    top: 10px;
+    top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    background: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     z-index: 1000;
-    width: calc(100% - 40px);
+    width: calc(100% - 50px);
     box-sizing: border-box;
 }
 
 #controls {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 15px;
 }
 
 #controls button {
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 12px 25px;
+    font-size: 18px;
     cursor: pointer;
-    flex: 1 1 40%;
-    max-width: 200px;
+    flex: 1 1 45%;
+    max-width: 220px;
     box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 #city {
@@ -59,19 +66,25 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     overflow-y: auto;
-    height: calc(100vh - 160px);
+    height: calc(100vh - 180px);
     width: 100%;
+    padding-bottom: 20px;
 }
 
 .house {
-    width: 80px;
-    height: 80px;
-    background: #add8e6;
+    width: 90px;
+    height: 90px;
+    background: #17a2b8; /* Bootstrap's info color */
     margin: 10px;
     position: relative;
     border-radius: 10px;
     overflow: hidden;
-    transition: background 0.5s;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.house:hover {
+    background: #138496;
+    transform: scale(1.05);
 }
 
 .house::after {
@@ -85,8 +98,13 @@ body {
     top: -20px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 20px;
-    color: green;
+    font-size: 22px;
+    color: #28a745; /* Bootstrap's success color */
     opacity: 0;
     transition: all 0.5s ease;
+}
+
+.dollar-sign.active {
+    top: -10px;
+    opacity: 1;
 }
