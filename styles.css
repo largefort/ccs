@@ -27,13 +27,13 @@ body {
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    background: #ffffff;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    box-shadow: none; /* Removed the shadow */
     z-index: 1000;
     width: calc(100% - 50px);
     box-sizing: border-box;
+    background: transparent; /* Transparent background */
 }
 
 #controls {
